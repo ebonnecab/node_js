@@ -1,11 +1,16 @@
 const express = require ('express')
 const app = express()
 const exphbs = require('express-handlebars')
-const mongoose = require('mongoose')
 
 //Index
 app.get('/', (req, res) => {
-    res.render('images-index', { nasaImages: nasaImages })
+    Image.find()
+        .then(images => {
+            res.render('images-index', {images: images});
+        })
+        .catch(err => {
+            console.log(err);
+        })
 })
 
 app.listen(3000, () => {
@@ -15,10 +20,18 @@ app.listen(3000, () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-mongoose.connect('mongodb:localhost/nasa-images');
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/nasa-images');
+
+//Model
+const Image = mongoose.model('Image', {
+    name: String,
+    date: String
+});
+
 //mock array of data
-let nasaImages = [
-    {date: "YYYY-MM-DD", name: "name"},
-    { date: "YYYY-MM-DD", name: "name"}
-]
+// let nasaImages = [
+//     {date: "YYYY-MM-DD", name: "name"},
+//     { date: "YYYY-MM-DD", name: "name"}
+// ]
 
