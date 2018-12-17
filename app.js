@@ -13,6 +13,15 @@ app.get('/', (req, res) => {
         })
 })
 
+//Show
+app.get('/images/:id', (req, res) => {
+    Image.findById(req.params.id).then((image) => {
+        res.render('images-show', {image: image})
+    }).catch((err) => {
+        console.log(err.message);
+    })
+});
+
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
 })
@@ -26,7 +35,7 @@ mongoose.connect('mongodb://localhost/nasa-images');
 //Model
 const Image = mongoose.model('Image', {
     name: String,
-    date: String
+    date: Date
 });
 
 //mock array of data
