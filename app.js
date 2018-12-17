@@ -16,7 +16,7 @@ app.set('view engine', 'handlebars');
 
 //mock array of data
 let nasaImages = [
-    {name: "name", location: "location"},
-    {name: "name2", location: "location2"}
+    {date: "YYYY-MM-DD", name: "name"},
+    { date: "YYYY-MM-DD", name: "name"}
 ]
 
