@@ -1,6 +1,7 @@
 const express = require ('express')
 const app = express()
 const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
 
 //Index
 app.get('/', (req, res) => {
@@ -14,6 +15,7 @@ app.listen(3000, () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+mongoose.connect('mongodb:localhost/nasa-images');
 //mock array of data
 let nasaImages = [
     {date: "YYYY-MM-DD", name: "name"},
