@@ -1,3 +1,14 @@
+const fetch = require("node-fetch");
+const apodUrl = "https://api.nasa.gov/planetary/apod?api_key=MDilPe2E8T8zPdhWjhgPZKGli3AbCdHlLvkMHG1P";
+fetch(apodUrl)
+    .then(data => {
+        return data.json()
+    })
+    .then(res => {
+        console.log(res)
+    })
+    .catch(error => console.log(error))
+
 module.exports = function(app, Image) {
     //Index
     app.get('/', (req, res) => {
