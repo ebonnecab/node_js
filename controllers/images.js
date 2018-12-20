@@ -6,3 +6,16 @@ const client = new apod.Client({
 client().then(function (body) {
     console.log(body);
 });
+
+module.exports = function (app, Image) {
+
+    app.get('/', (req, res) => {
+        client()
+        .then(images => {
+            res.render('images-show', {images: images});
+        }).catch(err => {
+                console.log(err);
+            });
+    });
+
+}
